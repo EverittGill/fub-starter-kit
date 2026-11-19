@@ -14,9 +14,11 @@ anything that changes their FUB account.
    connected to. Make sure it's THEIR account before going on.
 3. **Import.** On their yes, run `node tools/import-to-fub.mjs`. It skips anything that already
    exists, so it's safe to run again.
-4. **Action plans.** Follow `docs/BUILD-PLANS.md`. Ask which lead sources they actually use first and
-   build only those plans. Not every agent needs all 47.
-5. **Automations.** Walk through `docs/AUTOMATIONS.md` in their FUB.
+4. **Account setup.** The custom fields and deal pipelines in `docs/REBUILD.md` (by hand, or in Chrome).
+5. **Automations.** Follow `docs/REBUILD.md`: workers first, then triggers. Ask which lead sources
+   they actually get and build those first. Build each one from its sheet in `data/automations/`,
+   then read it back and compare: same trigger, same box count, same gear settings. Leave every
+   automation **off**, and switch one on only when they say so.
 6. **Second brain.** Follow `second-brain/README.md`.
 
 ## Rules
@@ -24,7 +26,9 @@ anything that changes their FUB account.
 - Never send an email or text, and never apply a plan to a real contact, unless they say to for that
   specific action. Building plans and templates sends nothing. Applying a plan to a person does.
 - `config.json` and `state/` hold their key and account IDs. Never commit them. `.gitignore` covers both.
-- FUB's public API can create email templates and stages, but **not** action plans or automations.
-  Those are built in the FUB web app (see the docs).
-- Rebuilding `data/` from a raw export (`tools/build-data.mjs`) is only for the kit's owner. Agents
-  using the kit never need it.
+- The import script creates email templates and person stages through FUB's API. Automations, action
+  plans, custom fields and deal pipelines are built in the FUB web app (FUB's API can't create
+  automations or action plans, and the kit doesn't touch fields or pipelines through the API).
+- When building in Chrome, confirm the account name in the top right is THEIRS before every save.
+- Rebuilding `data/` from a raw export (`tools/build-data.mjs`, `tools/build-automations.mjs`) is only
+  for the kit's owner. Agents using the kit never need it.

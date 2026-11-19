@@ -50,5 +50,164 @@
   "past client",
   "sphere",
   "unresponsive"
+ ],
+ "automationPrerequisites": {
+  "kts": {
+   "personStages": [
+    "A - Hot 1-3 Months",
+    "Active Client",
+    "Archive",
+    "B - Warm 3-6 Months",
+    "C - Cold 6+ Months",
+    "Lead",
+    "Past Client",
+    "Renter - future buyer",
+    "Sphere",
+    "Trash"
+   ],
+   "dealStages": [
+    "Buyers • Buyer Contract",
+    "Buyers • Pending",
+    "Sellers • Listed",
+    "Sellers • Pending",
+    "Sellers • Pre-Listing"
+   ],
+   "dateFields": [
+    "1st Home Anniversary",
+    "Agnostic Home Anniversary",
+    "Birthday",
+    "Relationship Birthday"
+   ],
+   "conditionFields": [
+    "Created",
+    "Last Communication",
+    "Open House Address"
+   ],
+   "tags": [
+    "AL: OPT-OUT",
+    "BUYER",
+    "Buyer",
+    "Buyer/Seller",
+    "CALLBACK_SCHEDULED",
+    "CONTACT DASHBOARD VIEW",
+    "DECLINED_BY_REALTOR",
+    "DO_NOT_CALL",
+    "HOMEBOT_ENGAGED",
+    "ISA_TRANSFER_SUCCESSFUL",
+    "ISA_TRANSFER_UNSUCCESSFUL",
+    "NOTEXT",
+    "NOT_INTERESTED",
+    "NURTURE",
+    "RENTER",
+    "Raiya Ylopo Call Center Calls Completed",
+    "RealScout HVA Viewed",
+    "SELLER",
+    "Seller",
+    "Texting_Betty_Unsubscribed",
+    "Unsubscribed",
+    "WRONG_NUMBER",
+    "YLOPO_AI_VOICE_COMPLETED",
+    "Y_AI_PRIORITY",
+    "Y_SELLER_3_VIEW",
+    "Y_SELLER_CALL_AGENT",
+    "Y_SELLER_EMAIL_AGENT",
+    "Y_SELLER_HEATMAP_INQUIRY",
+    "Y_SELLER_LEARN_MORE_EQUITY",
+    "Y_SELLER_NEW_HOME_UPGRADES",
+    "Y_SELLER_PRIVATE_SHOWING",
+    "Y_SELLER_REPORT_ENGAGED",
+    "Y_SELLER_REPORT_VIEWED",
+    "Y_SELLER_SEARCH_MORE_PROPERTIES",
+    "Y_SELLER_SEE_MORE_LISTINGS",
+    "Y_SELLER_SELF_GENERATED",
+    "Y_SELLER_TUNE_HOME_VALUE",
+    "Y_SELLER_UNDERSTAND_TREND",
+    "Y_SELLER_VIEWED_SIMILAR_LISTINGS",
+    "absentee",
+    "do_not_text",
+    "expired",
+    "fsbo",
+    "handraiser",
+    "homebot",
+    "open house",
+    "optout",
+    "past client",
+    "post closing legacy",
+    "probate",
+    "recruiting",
+    "sphere",
+    "unresponsive"
+   ]
+  },
+  "ylopo-tags": {
+   "personStages": [
+    "Lead"
+   ],
+   "dealStages": [],
+   "dateFields": [],
+   "conditionFields": [],
+   "tags": [
+    "HANDRAISER",
+    "NEW_NUMBER",
+    "REQUESTED_RATE",
+    "YPRIORITY",
+    "Y_FAVORITED_LISTING",
+    "Y_HOME_3_VIEW",
+    "Y_REQUESTED_TOUR",
+    "Y_SHARED_LISTING"
+   ]
+  },
+  "legacy": {
+   "personStages": [
+    "Closed",
+    "Lead",
+    "Past Client"
+   ],
+   "dealStages": [],
+   "dateFields": [
+    "Birthday"
+   ],
+   "conditionFields": [
+    "Created",
+    "Email",
+    "Last Activity",
+    "Last Communication",
+    "Lender",
+    "Total Listings Viewed"
+   ],
+   "tags": [
+    "BAD_PHONE",
+    "BAD_PHONE_NUMBER",
+    "Bad Number",
+    "Bad Phone",
+    "Bad Phone Number",
+    "Bad_Number",
+    "CM-Start",
+    "LCADrip",
+    "Lead-Day1-15-Audit",
+    "Open House Attendee",
+    "PriorityPondCheck",
+    "Raiya Ylopo Call Center Calls Completed",
+    "Re-engage",
+    "StoragePondCheck",
+    "Wrong Number",
+    "YLOPO_ADWORDS",
+    "YLOPO_DIRECT_CONNECT_FB",
+    "YLOPO_DIRECT_CONNECT_PPC",
+    "YLOPO_ORGANIC",
+    "Ylopo_Rev_Test",
+    "appinvite",
+    "homeownersurface"
+   ]
+  }
+ },
+ "builtInFields": [
+  "Birthday",
+  "Created",
+  "Last Communication",
+  "Last Activity",
+  "Email",
+  "Lender",
+  "Total Listings Viewed"
  ]
 }

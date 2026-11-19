@@ -40,15 +40,17 @@ const fill = s => (s ?? '')
   .replaceAll('{{WEBSITE}}', cfg.website.replace(/\/$/, ''))
   .replaceAll('{{ABOUT_ME_URL}}', cfg.aboutMeUrl || cfg.website)
   .replaceAll('{{GOOGLE_REVIEWS_URL}}', cfg.googleReviewsUrl || cfg.website)
-  .replaceAll('{{BROKERAGE}}', cfg.brokerage);
+  .replaceAll('{{BROKERAGE}}', cfg.brokerage)
+  .replaceAll('{{SELLERS_GUIDE_URL}}', cfg.sellersGuideUrl || cfg.website);
 
 const me = await fub('GET', 'me');
 console.log(`Connected to FUB as ${me.name} (account ${me.account})${DRY ? ' — DRY RUN, nothing will change' : ''}`);
 
-// 1. Stages the plans move people into.
+// 1. Person stages the automations trigger on, filter on, or move people into.
 const setup = JSON.parse(fs.readFileSync('data/setup.json', 'utf8'));
 const haveStages = new Set((await listAll('stages', 'stages')).map(s => s.name));
-for (const name of setup.stagesUsedByPlans) {
+const wantStages = [...new Set([...setup.stagesUsedByPlans, ...setup.automationPrerequisites.kts.personStages])];
+for (const name of wantStages) {
   if (haveStages.has(name)) { console.log(`stage ok      ${name}`); continue; }
   console.log(`stage create  ${name}`);
   if (!DRY) await fub('POST', 'stages', { name });
@@ -74,4 +76,4 @@ console.log(`templates: ${made} ${DRY ? 'would be created' : 'created'}, ${skipp
 
 const leftovers = templates.filter(t => /\{\{[A-Z_]+\}\}/.test(fill(t.body))).length;
 if (leftovers) console.log(`WARNING: ${leftovers} templates still contain a {{PLACEHOLDER}} — check config.json`);
-console.log('\nNext: build the action plans (docs/BUILD-PLANS.md), then the automations (docs/AUTOMATIONS.md).');
+console.log('\nNext: the one-time account setup and the automation rebuild in docs/REBUILD.md.');

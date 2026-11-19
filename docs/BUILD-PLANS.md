@@ -1,5 +1,9 @@
 # Getting the action plans into your FUB
 
+> In the source account these plans run as **automations** (the `*KTS AP …` workers), and that's
+> what to rebuild: see [REBUILD.md](REBUILD.md). The classic action plans below contain the same
+> steps and are kept as a reference, or for accounts that prefer classic action plans.
+
 FUB doesn't let outside tools create action plans through its API, so there are three ways to do it.
 They're listed fastest first.
 

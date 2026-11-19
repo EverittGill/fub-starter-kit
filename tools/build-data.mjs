@@ -17,12 +17,21 @@ const scrub = s => (s ?? '')
   .replace(/(www\.)?sellitwitheveritt\.com/gi, '{{WEBSITE}}')
   .replace(/\{\{WEBSITE\}\}\/team\/everitt-gill/g, '{{ABOUT_ME_URL}}')
   .replace(/https:\/\/www\.google\.com\/maps\/place\/Everitt\+Gill[^"\\]*/g, '{{GOOGLE_REVIEWS_URL}}')
-  .replace(/Salt Harbor Real Estate Company/g, '{{BROKERAGE}}');
+  .replace(/Salt Harbor Real Estate Company/g, '{{BROKERAGE}}')
+  .replace(/https?:\/\/link\.davinahughes\.com\/sellersguide/gi, '{{SELLERS_GUIDE_URL}}')
+  .replace(/\bDavina\b/g, '%agent_first_name%');
 
 const emailById = Object.fromEntries(emails.map(e => [e.id, e]));
 const used = new Set();
 for (const p of plans) for (const s of p.steps) if (s.emailTemplateId) used.add(s.emailTemplateId);
 for (const e of emails) if (/^\*KTS/.test(e.name)) used.add(e.id);
+// Every template any automation sends (KTS, Ylopo-tag and legacy), so the automations can be rebuilt as they are.
+const autoCapture = 'export/raw/automations-full.json';
+if (fs.existsSync(autoCapture)) {
+  const byName = Object.fromEntries(emails.map(e => [e.name, e.id]));
+  for (const a of JSON.parse(fs.readFileSync(autoCapture, 'utf8')).recs)
+    for (const n of a.nodes) if (/^Send Email/.test(n.text) && n.values?.[0] && byName[n.values[0]]) used.add(byName[n.values[0]]);
+}
 
 const outEmails = [...used].sort((a, b) => a - b).map(id => emailById[id]).filter(Boolean)
   .map(e => ({ key: e.id, name: e.name, subject: scrub(e.subject), body: scrub(e.body) }));

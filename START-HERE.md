@@ -1,5 +1,7 @@
 # START HERE: instructions for the agent's Claude
 
+**Using Lofty instead of Follow Up Boss? Stop here and follow `LOFTY.md`.**
+
 You are Claude Code, helping a real estate agent ("the agent") set up three things:
 
 1. **Their Claude Code second brain**, so you remember their business from one session to the next.

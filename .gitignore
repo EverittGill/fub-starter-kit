@@ -3,3 +3,4 @@ state/
 export/
 node_modules/
 .DS_Store
+lofty/build/

@@ -7,6 +7,8 @@ This kit gives a real estate agent two things:
 
 You don't need to know how to code. Open this folder in Claude Code and say **"set me up"**. Claude reads `START-HERE.md` and walks you through each step: the files, connecting Claude to your FUB, your second brain, your FUB setup and the rebuild.
 
+**On Lofty instead of Follow Up Boss?** Say "set me up on Lofty". Claude follows `LOFTY.md`: the same second brain, and each KTS drip turned into a Lofty build sheet (`tools/build-lofty.mjs`) with the emails converted to Lofty's variables. Lofty's API can't create templates or Smart Plans, so they're built on Lofty's screens.
+
 ## What's in here
 
 | Folder | What it is |

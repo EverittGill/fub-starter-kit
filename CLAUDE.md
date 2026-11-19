@@ -1,6 +1,7 @@
 # CLAUDE.md — FUB Starter Kit
 
-**Read `START-HERE.md` first and follow it phase by phase.** It covers getting the files, the FUB
+**Read `START-HERE.md` first and follow it phase by phase.** If the agent uses **Lofty** instead of
+Follow Up Boss, follow `LOFTY.md` instead. It covers getting the files, the FUB
 connector (with its promotional text removed), the second brain, account setup and the rebuild.
 The notes below are a short summary.
 

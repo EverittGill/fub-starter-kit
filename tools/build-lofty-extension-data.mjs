@@ -37,6 +37,41 @@ const swap = s => s.replace(/%[a-z_]+%/g, m => {
   return v.startsWith('text:') ? v.slice(5) : v;
 });
 
+// --- Triggers, taken from the kit's capture of the source account (data/automations.json) ---
+// kind: 'tag' (start when one of these tags is added), 'stage' (start when the lead moves to one of
+// these pipeline stages), 'calendar' (date-based: skipped, set up in Lofty), 'byHand' (uploaded with
+// no trigger; the note says what started it in Follow Up Boss), 'manual' (started by a lead source).
+const automations = JSON.parse(fs.readFileSync('data/automations.json', 'utf8'));
+const list = d => (d ?? '').replace(/^.*?:\s*/, '').split(/,\s*/).map(x => x.trim()).filter(Boolean);
+const BY_HAND = {
+  '*KTS AP Nurture Buyer': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Buyer (not past client, sphere or RENTER). A tag-only trigger would start this the moment a new-lead drip adds the Buyer tag, so it is uploaded without one.',
+  '*KTS AP Nurture Seller': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Seller (not past client, sphere or RENTER). A tag-only trigger would start this the moment a new-lead drip adds the Seller tag, so it is uploaded without one.',
+  '*KTS AP Nurture Buyer + Seller': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Buyer/Seller (not past client, sphere or RENTER).',
+  '*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold and the lead has none of the tags Buyer, Seller, Buyer/Seller, past client, sphere, RENTER, expired, fsbo.',
+  '*KTS AP Buyer Active': 'In FUB: a deal in the Buyers pipeline moves to Buyer Contract. Lofty lead stages do not separate buyers from sellers, so apply it by hand or use your own transaction stage.',
+  '*KTS AP Buyer Pending': 'In FUB: a deal in the Buyers pipeline moves to Pending. Apply it by hand or use your own transaction stage.',
+  '*KTS AP Seller Pre-Listed': 'In FUB: a deal in the Sellers pipeline moves to Pre-Listing. Apply it by hand or use your own transaction stage.',
+  '*KTS AP Seller Listed': 'In FUB: a deal in the Sellers pipeline moves to Listed. Apply it by hand or use your own transaction stage.',
+  '*KTS AP Seller Pending': 'In FUB: a deal in the Sellers pipeline moves to Pending. Apply it by hand or use your own transaction stage.',
+  '*KTS AP Recent Online Activity': 'In FUB: the lead views or saves a property, was created more than 30 days ago, and has had no contact for 14 days. Use Lofty\'s lead-activity trigger.',
+  '*KTS AP Pause action plans': 'In FUB: stage changes to Active Client or Archive, or a Ylopo AI Voice tag is added.',
+  '*KTS AP New Open House Lead - Manual - Task': 'In FUB: the tag "open house" is added and Open House Address is EMPTY. (The "- Manual" plan has the open house tag trigger; with both on that tag a lead would get both.)',
+  'AP Unsubscribed': 'In FUB: an inquiry arrives from a lead tagged Unsubscribed / NOTEXT / do_not_text / optout.',
+};
+function triggerFor(name) {
+  if (BY_HAND[name]) return { kind: 'byHand', note: BY_HAND[name] };
+  const feeders = automations.filter(a => a.steps.some(s => s.kind === 'runAutomation' && s.automation === name));
+  const trig = feeders.flatMap(a => a.triggers.filter(t => t.type !== 'Manual'));
+  const filters = feeders.flatMap(a => a.steps.filter(s => s.kind === 'condition').flatMap(s => s.rules));
+  const note = filters.length ? `FUB also required: ${[...new Set(filters)].join('; ')}. Add that as a condition in Lofty if you want it.` : undefined;
+  if (!trig.length) return { kind: 'manual' };
+  if (trig.every(t => t.type === 'Calendar Date')) return { kind: 'calendar', note: trig.map(t => t.detail).join('; ') };
+  if (trig.every(t => t.type === 'Tag Added')) return { kind: 'tag', tags: [...new Set(trig.flatMap(t => list(t.detail)))], note };
+  if (trig.every(t => t.type === 'Stage Change')) return { kind: 'stage', stages: [...new Set(trig.flatMap(t => list(t.detail)))], note };
+  return { kind: 'byHand', note: `In FUB: ${trig.map(t => `${t.type} ${t.detail ?? ''}`).join(' / ')}` };
+}
+const worker = name => automations.find(a => a.name === name);
+
 const KEEP_RUNNING = ['Happy Birthday', 'Happy Birthday - Relationship', 'Home Anniversary', 'Home Anniversary - Agnostic'];
 const task = (s, name) => ({ action: 'createTask', position: s.position, runAfterDays: s.runAfterDays, taskType: 'Follow Up', taskName: name });
 
@@ -45,6 +80,8 @@ const actionPlans = plans.map(p => ({
   id: p.key,
   name: p.name,
   stepCount: p.steps.length,
+  trigger: triggerFor(p.name),
+  pauseOnReply: !!(p.stopOnContacted || worker(p.name)?.pauseWhenLeadResponds),
   steps: p.steps.map(s => {
     switch (s.action) {
       case 'sendEmail': usedTemplates.add(s.emailTemplateKey);
@@ -84,6 +121,8 @@ const meta = { source: 'fub-starter-kit', builtAt: new Date().toISOString(), web
 fs.writeFileSync(path.join(extDir, 'data/action-plans.json'), JSON.stringify({ _metadata: meta, actionPlans }, null, 1));
 fs.writeFileSync(path.join(extDir, 'data/templates.json'), JSON.stringify({ _metadata: meta, templates: tplOut }, null, 1));
 const unconfirmed = Object.entries(vmap).filter(([k, v]) => k.startsWith('%') && v.lofty && !v.confirmed).length;
+const kinds = {}; for (const p of actionPlans) kinds[p.trigger.kind] = (kinds[p.trigger.kind] || 0) + 1;
+console.log('Triggers:', JSON.stringify(kinds));
 console.log(`Wrote ${actionPlans.length} plans and ${Object.keys(tplOut).length} emails to ${extDir}/data`);
 if (unconfirmed) console.log(`Note: ${unconfirmed} Lofty variables are not yet confirmed in Lofty's variable picker (lofty/variable-map.json).`);
 console.log('Reload the extension in chrome://extensions so it picks up the new data.');

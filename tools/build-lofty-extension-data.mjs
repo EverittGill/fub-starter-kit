@@ -125,6 +125,7 @@ const leftovers = Object.values(tplOut).filter(t => /\{\{[A-Z_]+\}\}/.test(t.sub
 if (leftovers) { console.error(`${leftovers} emails still contain a {{PLACEHOLDER}}: check config.json`); process.exit(1); }
 
 const meta = { source: 'fub-starter-kit', builtAt: new Date().toISOString(), website: cfg.website, brokerage: cfg.brokerage };
+fs.mkdirSync(path.join(extDir, 'data'), { recursive: true });
 fs.writeFileSync(path.join(extDir, 'data/action-plans.json'), JSON.stringify({ _metadata: meta, actionPlans }, null, 1));
 fs.writeFileSync(path.join(extDir, 'data/templates.json'), JSON.stringify({ _metadata: meta, templates: tplOut }, null, 1));
 const unconfirmed = Object.entries(vmap).filter(([k, v]) => k.startsWith('%') && v.lofty && !v.confirmed).length;

@@ -7,6 +7,8 @@ anything that changes their FUB account.
 
 ## When they say "set me up"
 
+Work through `docs/FRIEND-SETUP.md` alongside the steps below, and tell them which boxes are still open.
+
 1. **Config.** If `config.json` is missing, copy `config.example.json` to it and ask them for each
    value. For the API key, tell them where to create it (FUB → Admin → API → Create API Key) and have
    them paste it into the file themselves. Don't echo the key back in chat.

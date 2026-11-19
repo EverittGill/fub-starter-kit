@@ -61,7 +61,7 @@ function step(n) {
     case 'Remove Tags': return { kind: 'removeTags', mode: c[0] ?? null, tags: d === 'All tags' ? [] : d.split(/,\s*/) };
     case 'Change Stage': return { kind: 'changeStage', stage: d.replace(/^(Stage|To):\s*/, '') };
     case 'Run Automation': return { kind: 'runAutomation', automation: (d.match(/"(.+)"/) || [])[1] ?? d, behavior: c[0] ?? null };
-    case 'Pause Automations': return { kind: 'pauseAutomations', which: c[0] ?? d };
+    case 'Pause Automations': return /selected/i.test(c[0] ?? '') ? { kind: 'pauseAutomations', which: 'Pause selected automation(s)', automations: d.split(/,\s*(?=\*|AP )/) } : { kind: 'pauseAutomations', which: c[0] ?? d };
     case 'Pause Action Plans': return { kind: 'pauseActionPlans', which: c[0] ?? d };
     case 'Reassign Agent or Lender': return { kind: 'reassign', detail: d, panel: tok(n).slice(2, -1) };
     case 'Add Collaborators': case 'Remove Collaborators': return { kind: head, detail: d };
@@ -98,6 +98,18 @@ for (const a of raw) {
     triggers: triggers.map(trigger), steps,
     check: { boxesInSource: counted, stepsCaptured: steps.length, branches },
   });
+}
+
+// Owner decision (2026-11-19): a drip that starts pauses only the OTHER KTS drips, never the yearly
+// Birthday / Home Anniversary drips. The source paused all automations at this point.
+const KEEP_RUNNING = ['*KTS AP Happy Birthday', '*KTS AP Happy Birthday - Relationship', '*KTS AP Home Anniversary', '*KTS AP Home Anniversary - Agnostic'];
+const isDrip = x => x.group === 'kts' && /^\*KTS AP /.test(x.name) && x.steps.some(s => s.kind === 'email' || s.kind === 'task');
+for (const x of out) for (const st of x.steps) {
+  if (x.group === 'kts' && st.kind === 'pauseAutomations' && st.which === 'Pause all automations') {
+    st.which = 'Pause selected automation(s)';
+    st.automations = out.filter(y => isDrip(y) && y.name !== x.name && !KEEP_RUNNING.includes(y.name)).map(y => y.name).sort();
+    st.changedFromSource = 'Pause all automations (changed on the owner\'s decision so Birthday and Home Anniversary keep running)';
+  }
 }
 
 // Sanity: every box captured, no branches.
@@ -141,7 +153,7 @@ for (const x of out) {
       case 'removeTags': what = 'Remove Tags'; det = `${esc(s.mode)}: ${s.tags.map(esc).join(', ')}`; break;
       case 'changeStage': what = 'Change Stage'; det = esc(s.stage); break;
       case 'runAutomation': what = 'Run Automation'; det = `**${esc(s.automation)}** · ${esc(s.behavior)}`; break;
-      case 'pauseAutomations': what = 'Pause Automations'; det = esc(s.which); break;
+      case 'pauseAutomations': what = 'Pause Automations'; det = esc(s.which) + (s.automations ? `: ${s.automations.map(esc).join(', ')}` : '') + (s.changedFromSource ? ` · **changed from source:** ${esc(s.changedFromSource)}` : ''); break;
       case 'pauseActionPlans': what = 'Pause Action Plans'; det = esc(s.which); break;
       default: what = esc(s.head ?? s.kind); det = esc(s.detail);
     }

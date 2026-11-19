@@ -11,6 +11,7 @@ You don't need to know how to code. Open this folder in Claude Code and say **"s
 
 | Folder | What it is |
 |---|---|
+| `docs/FRIEND-SETUP.md` | **Start here**: what each agent sets up so the system can actually send |
 | `docs/REBUILD.md` | **Start here for automations**: what the system is and the order to rebuild it |
 | `docs/TIMING-REVIEW.md` | On/off, lead flow, first texts, timing and overlap: read before switching anything on |
 | `docs/SMART-LISTS.md` | The 13 KTS daily call lists (plus 3 Ylopo AI Voice lists), filter by filter |

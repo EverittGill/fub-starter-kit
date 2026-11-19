@@ -17,7 +17,7 @@ Any one of these starts it:
 
 | # | Step | Details |
 |---|---|---|
-| 1 | Pause Automations | Pause selected automation(s) |
+| 1 | Pause Automations | Pause selected automation(s): \*KTS AP Buyer Active |
 | 2 | Send Email | Template **\*KTS Offer Accepted #1** · From: Agent assigned to the contact · Send to contact and all relationships · Send between 8:00 am and 7:00 pm |
 | 3 | Time Delay | Wait **1 day**, then run |
 | 4 | Send Email | Template **\*KTS Offer Accepted #2** · From: Agent assigned to the contact · Send to contact and all relationships · Send between 8:00 am and 7:00 pm |

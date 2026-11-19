@@ -69,10 +69,12 @@ and the automations have no text step. So, in the new account:
   the source.
 - **Two triggers feed each nurture worker** (one on the tag, one on the stage). Because the worker
   doesn't repeat, a person who gets both should still go through it once. Test this.
-- **"Pause all automations."** Most workers start by pausing every other automation running for that
-  person. Starting a new drip therefore stops the old one, which is intended. But it can also pause the
-  long Birthday and Home Anniversary drips. Whether those resume isn't confirmed. **Decision for the
-  owner:** keep it as is (exact copy) or change those first steps to pause only the other drips.
+- **Pausing other drips (changed on purpose).** In the source, 11 workers start by pausing **all**
+  automations for that person, which would also stop the yearly Birthday and Home Anniversary drips.
+  **The owner decided (2026-11-19) that these pause only the other KTS drips.** Each of those sheets
+  lists the 32 drips to select under "Pause selected automation(s)" and marks the step "changed from
+  source". Happy Birthday, Happy Birthday - Relationship, Home Anniversary and Home Anniversary -
+  Agnostic keep running.
 - **"Pause when the lead responds"** is on for the new-lead, Stale, Recent Online Activity and Ylopo
   workers, and off for nurture, Post Closing, Sphere, Birthday and Anniversary. That matches the
   source.

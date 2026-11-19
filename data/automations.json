@@ -1711,7 +1711,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "wait",
@@ -2412,7 +2447,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "wait",
@@ -3135,7 +3205,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "wait",
@@ -4203,7 +4308,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",
@@ -4645,7 +4785,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",
@@ -6195,7 +6370,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "wait",
@@ -6553,7 +6763,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "email",
@@ -6735,7 +6980,43 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    }
   ],
   "check": {
@@ -7049,7 +7330,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",
@@ -8166,7 +8482,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",
@@ -10424,7 +10775,10 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause selected automation(s)"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Buyer Active"
+    ]
    },
    {
     "kind": "email",
@@ -10666,7 +11020,11 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause selected automation(s)"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS Seller Pre-Listing",
+     "*KTS AP Seller Pre-Listed"
+    ]
    },
    {
     "kind": "email",
@@ -10773,7 +11131,11 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause selected automation(s)"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS Seller Listed",
+     "*KTS AP Seller Listed"
+    ]
    },
    {
     "kind": "email",
@@ -19891,7 +20253,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Seller Lead - Cash Offer",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",
@@ -21549,7 +21946,42 @@
   "steps": [
    {
     "kind": "pauseAutomations",
-    "which": "Pause all automations"
+    "which": "Pause selected automation(s)",
+    "automations": [
+     "*KTS AP Automated Valuation Engagement - Ylopo",
+     "*KTS AP Branded Website - New Form",
+     "*KTS AP Branded Website - Realtor.com",
+     "*KTS AP Buyer Active",
+     "*KTS AP Buyer Pending",
+     "*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.",
+     "*KTS AP New Buyer Lead",
+     "*KTS AP New Buyer Lead - delayed text",
+     "*KTS AP New Buyer Lead - referral source",
+     "*KTS AP New Home Valuation",
+     "*KTS AP New Open House Lead",
+     "*KTS AP New Open House Lead - Manual",
+     "*KTS AP New Open House Lead - Manual - Task",
+     "*KTS AP New Renter",
+     "*KTS AP New Seller Lead",
+     "*KTS AP New Ylopo Direct Connect",
+     "*KTS AP New Zillow Preferred",
+     "*KTS AP New Zillow, Realtor, Trulia",
+     "*KTS AP Nurture Buyer",
+     "*KTS AP Nurture Buyer + Seller",
+     "*KTS AP Nurture Seller",
+     "*KTS AP Post Closing",
+     "*KTS AP Post Closing - Legacy",
+     "*KTS AP Recent Online Activity",
+     "*KTS AP Renter to Future Buyer",
+     "*KTS AP Seller Listed",
+     "*KTS AP Seller Pending",
+     "*KTS AP Seller Pre-Listed",
+     "*KTS AP Sphere Nurture",
+     "*KTS AP Stale",
+     "*KTS AP Ylopo Message Sent",
+     "*KTS AP Ylopo Private Showing"
+    ],
+    "changedFromSource": "Pause all automations (changed on the owner's decision so Birthday and Home Anniversary keep running)"
    },
    {
     "kind": "addTags",

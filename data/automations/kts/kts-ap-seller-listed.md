@@ -17,7 +17,7 @@ Any one of these starts it:
 
 | # | Step | Details |
 |---|---|---|
-| 1 | Pause Automations | Pause selected automation(s) |
+| 1 | Pause Automations | Pause selected automation(s): \*KTS Seller Pre-Listing, \*KTS AP Seller Pre-Listed |
 | 2 | Send Email | Template **\*KTS Seller Listed #1** · From: Agent assigned to the contact · Send to contact and all relationships · Send between 8:00 am and 7:00 pm |
 | 3 | Time Delay | Wait **3 days**, then run |
 | 4 | Send Email | Template **\*KTS Seller Listed #2** · From: Agent assigned to the contact · Send to contact and all relationships · Send between 8:00 am and 7:00 pm |

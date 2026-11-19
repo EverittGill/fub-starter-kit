@@ -11,7 +11,6 @@ in FUB means no birthday drip.
       includes automations.
 - [ ] **Claude** subscription (Pro or Max) and **Claude Code** installed.
 - [ ] **Node.js 18 or newer** installed (the import script needs it).
-- [ ] A **GitHub account**, so they can be invited to the private kit repository.
 - [ ] Their **FUB API key**: Admin → API → Create API Key. They keep it to themselves.
 
 ## In FUB: make the system able to send

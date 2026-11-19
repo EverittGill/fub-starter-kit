@@ -36,14 +36,15 @@ boxes are still open.
 
 ## Phase 1: Check the computer and get the files
 
-1. Check the tools: `claude --version`, `node --version` (needs 18 or newer), `git --version`,
-   `gh auth status`. If something is missing, tell the agent what to install and stop until it's there.
-2. Get this kit. It's a private repository, so the agent must have accepted the GitHub invitation:
+1. Check the tools: `claude --version`, `node --version` (needs 18 or newer), `git --version`.
+   No GitHub account is needed. If something is missing, tell the agent what to install and stop
+   until it's there.
+2. Get this kit:
    ```bash
-   gh repo clone EverittGill/fub-starter-kit ~/fub-starter-kit
+   git clone https://github.com/EverittGill/fub-starter-kit ~/fub-starter-kit
    ```
-   If that fails with "not found", the invitation hasn't been accepted yet (check github.com
-   notifications). From here on, run commands from `~/fub-starter-kit`.
+   If that fails with "not found", the repository may have been made private again; ask the person
+   who shared it for a zip or an invitation. From here on, run commands from `~/fub-starter-kit`.
 3. Read `README.md`, `docs/FRIEND-SETUP.md` and `docs/REBUILD.md` before Phase 4.
 
 ---

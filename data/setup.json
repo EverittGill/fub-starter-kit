@@ -201,6 +201,18 @@
    ]
   }
  },
+ "smartListStages": [
+  "A - Hot 1-3 Months",
+  "Active Client",
+  "Archive",
+  "B - Warm 3-6 Months",
+  "C - Cold 6+ Months",
+  "Lead",
+  "Past Client",
+  "Pending",
+  "Renter - future buyer",
+  "Sphere"
+ ],
  "builtInFields": [
   "Birthday",
   "Created",

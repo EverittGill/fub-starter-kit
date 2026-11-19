@@ -51,13 +51,15 @@ the person's stage is A/B/C, and they don't have the tags past client, sphere or
 - **Filters are not branches.** A "Conditions" box with no yes/no paths means anyone who doesn't
   match every rule stops there.
 
+Read **[TIMING-REVIEW.md](TIMING-REVIEW.md)** before switching anything on.
+
 ## Before you build: set up the account (one time)
 
 The import script does steps 1 and 2. Steps 3 and 4 are by hand, or ask Claude in Chrome.
 
 1. **Person stages** (the script creates any that are missing): Lead, A - Hot 1-3 Months,
-   B - Warm 3-6 Months, C - Cold 6+ Months, Active Client, Past Client, Sphere,
-   Renter - future buyer, Archive, Trash.
+   B - Warm 3-6 Months, C - Cold 6+ Months, Active Client, Pending, Past Client, Sphere,
+   Renter - future buyer, Archive, Trash. Also set the account **time zone** (emails send 8 am to 7 pm).
 2. **Email templates**: all 668, with your website, review link and brokerage filled in. The script
    keeps the original template names, which are what the step sheets refer to.
 3. **Custom fields** (Admin → Custom Fields), spelled exactly like this:
@@ -86,7 +88,9 @@ Workers must exist before the triggers that run them.
    each sheet gives the count), and the same gear settings.
 4. **Test** with a fake contact using your own email address: add the trigger tag or stage and
    confirm the first email arrives at the right time.
-5. **Switch them on** one at a time, starting with the lead sources you actually get.
+5. **Connect lead sources and first texts** in Admin → Lead Flow ([TIMING-REVIEW.md](TIMING-REVIEW.md), section 2).
+6. **Build the smart lists** ([SMART-LISTS.md](SMART-LISTS.md)).
+7. **Switch them on** a trigger and its worker together, starting with the lead sources you actually get.
 
 Start with what makes money first: the new-lead workers (New Buyer Lead, New Seller Lead,
 New Zillow…, New Home Valuation, Branded Website…), then Post Closing, Sphere Nurture, Birthday and

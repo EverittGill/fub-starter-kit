@@ -192,6 +192,11 @@ for (const g of ['kts', 'ylopo-tags', 'legacy']) {
 const setupPath = 'data/setup.json';
 const setup = fs.existsSync(setupPath) ? JSON.parse(fs.readFileSync(setupPath, 'utf8')) : {};
 setup.automationPrerequisites = prereq;
+if (fs.existsSync('data/smart-lists.json')) {
+  const st = new Set();
+  for (const l of JSON.parse(fs.readFileSync('data/smart-lists.json', 'utf8'))) for (const f of l.filters) if (/^Stage /.test(f)) split(f).forEach(x => st.add(x));
+  setup.smartListStages = [...st].sort();
+}
 setup.builtInFields = ['Birthday', 'Created', 'Last Communication', 'Last Activity', 'Email', 'Lender', 'Total Listings Viewed'];
 fs.writeFileSync(setupPath, JSON.stringify(setup, null, 1));
 console.log('prerequisites (kts):', JSON.stringify(prereq.kts).slice(0, 400));

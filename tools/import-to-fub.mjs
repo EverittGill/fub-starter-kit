@@ -49,7 +49,7 @@ console.log(`Connected to FUB as ${me.name} (account ${me.account})${DRY ? ' —
 // 1. Person stages the automations trigger on, filter on, or move people into.
 const setup = JSON.parse(fs.readFileSync('data/setup.json', 'utf8'));
 const haveStages = new Set((await listAll('stages', 'stages')).map(s => s.name));
-const wantStages = [...new Set([...setup.stagesUsedByPlans, ...setup.automationPrerequisites.kts.personStages])];
+const wantStages = [...new Set([...setup.stagesUsedByPlans, ...setup.automationPrerequisites.kts.personStages, ...(setup.smartListStages ?? [])])];
 for (const name of wantStages) {
   if (haveStages.has(name)) { console.log(`stage ok      ${name}`); continue; }
   console.log(`stage create  ${name}`);

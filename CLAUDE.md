@@ -19,7 +19,8 @@ anything that changes their FUB account.
    they actually get and build those first. Build each one from its sheet in `data/automations/`,
    then read it back and compare: same trigger, same box count, same gear settings. Leave every
    automation **off**, and switch one on only when they say so.
-6. **Second brain.** Follow `second-brain/README.md`.
+6. **Lead flow, first texts, smart lists.** `docs/TIMING-REVIEW.md` section 2 and `docs/SMART-LISTS.md`.
+7. **Second brain.** Follow `second-brain/README.md`.
 
 ## Rules
 

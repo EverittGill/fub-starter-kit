@@ -12,6 +12,8 @@ You don't need to know how to code. Open this folder in Claude Code and say **"s
 | Folder | What it is |
 |---|---|
 | `docs/REBUILD.md` | **Start here for automations**: what the system is and the order to rebuild it |
+| `docs/TIMING-REVIEW.md` | On/off, lead flow, first texts, timing and overlap: read before switching anything on |
+| `docs/SMART-LISTS.md` | The 13 KTS daily call lists (plus 3 Ylopo AI Voice lists), filter by filter |
 | `data/automations/` | One rebuild sheet per automation (trigger, filters, every step, gear settings) |
 | `data/email-templates.json` | All 668 email templates. Your website and brokerage are filled in when you import. |
 | `data/action-plans.json` | All 47 action plans, step by step, in a form Claude can read |
@@ -29,7 +31,8 @@ You don't need to know how to code. Open this folder in Claude Code and say **"s
 3. Run `node tools/import-to-fub.mjs --dry-run`, check the output, then run it again without `--dry-run`.
 4. Do the one-time account setup in `docs/REBUILD.md` (4 custom fields, 2 deal pipelines).
 5. Rebuild the automations in the order `docs/REBUILD.md` gives, and leave them off until tested.
-6. Install the second brain with `second-brain/README.md`.
+6. Connect lead sources and first texts, and build the smart lists (`docs/TIMING-REVIEW.md`, `docs/SMART-LISTS.md`).
+7. Install the second brain with `second-brain/README.md`.
 
 ## Before you send anything
 

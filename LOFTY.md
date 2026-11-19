@@ -89,6 +89,43 @@ there, run `/hey-claude`. `/see-you-later` ends each session.
    tag conditions), when a **tag changes**, or when a **segment changes**. Agree with the agent which
    Lofty tag stands for each FUB stage they use, and write the list in their second brain.
 
+## Phase 5A (faster, if the agent has the extension): upload the drips as drafts
+
+Everitt built a Chrome extension, **FUB to Lofty Migrator**, that creates Smart Plans in Lofty
+directly, using the same requests Lofty's own website makes while the agent is logged in. It is
+**not** Lofty's public API: Lofty doesn't support it, could change or block it at any time, and
+using it on their account is the agent's call. Say that to the agent plainly before using it.
+Everything it creates is a **draft**: nothing sends until a plan is turned on and applied.
+
+The agent gets the extension folder from Everitt (the `kit-portable` branch of his
+`FUB_Lofty_Converter` repository, or a zip of its `extension/` folder). Then:
+
+1. Finish Phase 4 steps 2 and 3 (`config.json` and `lofty/variable-map.json`).
+2. Build its data from this kit (it ships with none):
+   ```bash
+   node tools/build-lofty-extension-data.mjs "<path to the extension folder>"
+   ```
+   It stops if a merge field or placeholder is unfilled. It writes 47 plans and their emails.
+3. The agent loads it: `chrome://extensions` → Developer mode on → **Load unpacked** → the
+   extension folder. They log into `crm.lofty.com` in a tab and open the extension.
+4. **Check Lofty Connection.** Then **Tags: Analyze** and read the list with the agent: which tags
+   exist and which the plans need. Only on their yes, **Create missing tags**.
+5. Leave the destination on **Personal (Private)**. Select **only** `*KTS AP Seller Listed` and
+   migrate it. In Lofty (Automation → Smart Plans), open it and compare with
+   `node tools/build-lofty.mjs "Seller Listed"` → `lofty/build/kts-ap-seller-listed/README.md`:
+   same steps, waits and emails; the emails show Lofty variables, not `%…%`; the plan is not on.
+   If anything is off, or the extension shows a signature or other error, **stop** and show the
+   agent the log (the "Debug" output). Don't try to work around Lofty's request signing.
+6. Then the drips they chose, a few at a time. The log names any plan it refused (missing tag or
+   stage) and any plan uploaded without a trigger ("set it by hand: Pipeline has changed to …").
+7. Known limits from January 2026: the two **Post Closing** plans are very large and failed to
+   upload then; **Recent Online Activity** gets no trigger; **Birthday** and **Home Anniversary**
+   are skipped. Build those by hand from their sheets (Phase 5).
+8. Each "pause another plan", "pause other plans" or "change stage" step arrives as a Follow Up
+   task with the instruction. Ask the agent whether to replace it with a Lofty step that does it.
+
+Then go on to Phase 6. Use Phase 5 for anything the extension couldn't do.
+
 ## Phase 5: Build the drips
 
 1. Ask which drips they want. Start with the ones for their own lead sources plus Sphere Nurture,

@@ -121,8 +121,8 @@
     "confirmed": false
   },
   "%custom_open_house_address%": {
-    "means": "custom field: open house address",
-    "lofty": null,
+    "means": "custom field: open house address (create a lead custom field named Open House Address in Lofty and use the variable the picker shows for it)",
+    "lofty": "#custom_open_house_address#",
     "confirmed": false
   },
   "%custom_total_listings_viewed%": {
@@ -131,8 +131,8 @@
     "confirmed": false
   },
   "%custom_ylopo_seller_report%": {
-    "means": "custom field (Ylopo): seller report link",
-    "lofty": null,
+    "means": "custom field (Ylopo): seller report link (Ylopo users only; same as above)",
+    "lofty": "#custom_ylopo_seller_report#",
     "confirmed": false
   }
 }

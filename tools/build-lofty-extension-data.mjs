@@ -43,29 +43,35 @@ const swap = s => s.replace(/%[a-z_]+%/g, m => {
 // no trigger; the note says what started it in Follow Up Boss), 'manual' (started by a lead source).
 const automations = JSON.parse(fs.readFileSync('data/automations.json', 'utf8'));
 const list = d => (d ?? '').replace(/^.*?:\s*/, '').split(/,\s*/).map(x => x.trim()).filter(Boolean);
+const HWC = ['A - Hot 1-3 Months', 'B - Warm 3-6 Months', 'C - Cold 6+ Months'];
+// Start when the lead moves to one of these stages AND has this tag (Lofty's pipeline trigger with a tag filter).
+const STAGE_TAG = {
+  '*KTS AP Nurture Buyer': { stages: HWC, tag: 'Buyer', keepOnStageChange: true, note: 'FUB also started it when the Buyer tag was added to a lead already in one of those stages, and left out leads tagged past client, sphere or RENTER.' },
+  '*KTS AP Nurture Seller': { stages: HWC, tag: 'Seller', keepOnStageChange: true, note: 'FUB also started it when the Seller tag was added to a lead already in one of those stages, and left out leads tagged past client, sphere or RENTER.' },
+  '*KTS AP Nurture Buyer + Seller': { stages: HWC, tag: 'Buyer/Seller', keepOnStageChange: true, note: 'FUB also started it when the Buyer/Seller tag was added to a lead already in one of those stages, and left out leads tagged past client, sphere or RENTER.' },
+  '*KTS AP Buyer Active': { stages: ['Active Client'], tag: 'Buyer', note: 'FUB started it when a deal in the Buyers pipeline moved to Buyer Contract. Here it is a lead stage plus the Buyer tag; change the stage if yours differs.' },
+  '*KTS AP Buyer Pending': { stages: ['Pending'], tag: 'Buyer', note: 'FUB started it when a deal in the Buyers pipeline moved to Pending.' },
+  '*KTS AP Seller Listed': { stages: ['Active Client'], tag: 'Seller', note: 'FUB started it when a deal in the Sellers pipeline moved to Listed. Here it is a lead stage plus the Seller tag; change the stage if yours differs.' },
+  '*KTS AP Seller Pending': { stages: ['Pending'], tag: 'Seller', note: 'FUB started it when a deal in the Sellers pipeline moved to Pending.' },
+};
 const BY_HAND = {
-  '*KTS AP Nurture Buyer': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Buyer (not past client, sphere or RENTER). A tag-only trigger would start this the moment a new-lead drip adds the Buyer tag, so it is uploaded without one.',
-  '*KTS AP Nurture Seller': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Seller (not past client, sphere or RENTER). A tag-only trigger would start this the moment a new-lead drip adds the Seller tag, so it is uploaded without one.',
-  '*KTS AP Nurture Buyer + Seller': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold AND the lead has the tag Buyer/Seller (not past client, sphere or RENTER).',
   '*KTS AP Need to know if buyer, seller, buyer/seller, luxury etc.': 'In FUB: stage changes to A - Hot, B - Warm or C - Cold and the lead has none of the tags Buyer, Seller, Buyer/Seller, past client, sphere, RENTER, expired, fsbo.',
-  '*KTS AP Buyer Active': 'In FUB: a deal in the Buyers pipeline moves to Buyer Contract. Lofty lead stages do not separate buyers from sellers, so apply it by hand or use your own transaction stage.',
-  '*KTS AP Buyer Pending': 'In FUB: a deal in the Buyers pipeline moves to Pending. Apply it by hand or use your own transaction stage.',
-  '*KTS AP Seller Pre-Listed': 'In FUB: a deal in the Sellers pipeline moves to Pre-Listing. Apply it by hand or use your own transaction stage.',
-  '*KTS AP Seller Listed': 'In FUB: a deal in the Sellers pipeline moves to Listed. Apply it by hand or use your own transaction stage.',
-  '*KTS AP Seller Pending': 'In FUB: a deal in the Sellers pipeline moves to Pending. Apply it by hand or use your own transaction stage.',
-  '*KTS AP Recent Online Activity': 'In FUB: the lead views or saves a property, was created more than 30 days ago, and has had no contact for 14 days. Use Lofty\'s lead-activity trigger.',
-  '*KTS AP Pause action plans': 'In FUB: stage changes to Active Client or Archive, or a Ylopo AI Voice tag is added.',
+  '*KTS AP Seller Pre-Listed': 'In FUB: a deal in the Sellers pipeline moves to Pre-Listing. Apply it by hand or use your own stage.',
+  '*KTS AP Pause action plans': 'In FUB: stage changes to Active Client or Archive, or a Ylopo AI Voice tag is added. Its one step pauses the lead\'s other drips.',
   '*KTS AP New Open House Lead - Manual - Task': 'In FUB: the tag "open house" is added and Open House Address is EMPTY. (The "- Manual" plan has the open house tag trigger; with both on that tag a lead would get both.)',
   'AP Unsubscribed': 'In FUB: an inquiry arrives from a lead tagged Unsubscribed / NOTEXT / do_not_text / optout.',
 };
+const leadFlow = Object.fromEntries(JSON.parse(fs.readFileSync('data/lead-flow.json', 'utf8')).map(x => [x.worker, x.leadSources]));
 function triggerFor(name) {
   if (BY_HAND[name]) return { kind: 'byHand', note: BY_HAND[name] };
+  if (STAGE_TAG[name]) return { kind: 'stageTag', ...STAGE_TAG[name] };
+  if (name === '*KTS AP Recent Online Activity') return { kind: 'activity', activities: ['viewListing', 'saveListings'], days: 7, note: 'FUB also required: created more than 30 days ago, no contact for 14 days, stage Lead / Warm / Cold / Archive / Renter, and not tagged past client or sphere.' };
   const feeders = automations.filter(a => a.steps.some(s => s.kind === 'runAutomation' && s.automation === name));
   const trig = feeders.flatMap(a => a.triggers.filter(t => t.type !== 'Manual'));
   const filters = feeders.flatMap(a => a.steps.filter(s => s.kind === 'condition').flatMap(s => s.rules));
   const note = filters.length ? `FUB also required: ${[...new Set(filters)].join('; ')}. Add that as a condition in Lofty if you want it.` : undefined;
-  if (!trig.length) return { kind: 'manual' };
-  if (trig.every(t => t.type === 'Calendar Date')) return { kind: 'calendar', note: trig.map(t => t.detail).join('; ') };
+  if (!trig.length) return { kind: 'manual', note: leadFlow[name] ? `New-lead drip. In FUB it started for new leads from: ${leadFlow[name].join('; ')}. Attach it to your matching lead source.` : (/ New /.test(name) || /Branded Website/.test(name) ? 'New-lead drip. Attach it to your matching lead source, or apply it by hand.' : undefined) };
+  if (trig.every(t => t.type === 'Calendar Date')) return { kind: 'byHand', note: `Yearly drip. In FUB it started on the date: ${trig.map(t => t.detail).join('; ')}, and each email is 365 days after the one before. Use Lofty's date-based option (birthday / anniversary) to start it.` };
   if (trig.every(t => t.type === 'Tag Added')) return { kind: 'tag', tags: [...new Set(trig.flatMap(t => list(t.detail)))], note };
   if (trig.every(t => t.type === 'Stage Change')) return { kind: 'stage', stages: [...new Set(trig.flatMap(t => list(t.detail)))], note };
   return { kind: 'byHand', note: `In FUB: ${trig.map(t => `${t.type} ${t.detail ?? ''}`).join(' / ')}` };
@@ -82,6 +88,7 @@ const actionPlans = plans.map(p => ({
   stepCount: p.steps.length,
   trigger: triggerFor(p.name),
   pauseOnReply: !!(p.stopOnContacted || worker(p.name)?.pauseWhenLeadResponds),
+  firstText: p.initialTextMessageEnabled ? { body: swap(p.initialTextMessage), delayMinutes: p.delaySmsMinutes } : undefined,
   steps: p.steps.map(s => {
     switch (s.action) {
       case 'sendEmail': usedTemplates.add(s.emailTemplateKey);

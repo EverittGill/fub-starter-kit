@@ -118,22 +118,26 @@ The agent gets the extension folder from Everitt (the `kit-portable` branch of h
    agent the log (the "Debug" output). Don't try to work around Lofty's request signing.
 6. Then the drips they chose, a few at a time. A plan uploaded once is skipped on later runs.
    The log ends with a **"TO FINISH IN LOFTY"** list; copy it into their second brain. It covers:
-   - **Uploaded with no trigger, on purpose:** the three Nurture drips, the five buyer/seller
-     transaction drips (Buyer Active, Buyer Pending, Seller Pre-Listed, Seller Listed, Seller
-     Pending), Recent Online Activity and a few utility plans. Each note says what started it in
-     Follow Up Boss. Decide the Lofty trigger with the agent, or they apply it by hand.
-   - **Stage-triggered** (Post Closing, Sphere Nurture, Renter to Future Buyer): trigger set only if
-     their Lofty has a stage with that name; otherwise the note says to pick their matching stage.
-   - **Tag-triggered:** trigger set; the note lists any extra condition FUB had.
-   - New-lead drips have no trigger: they are started per lead source (Phase 6).
+   - **Stage + tag triggers** (the three Nurture drips; Buyer Active, Buyer Pending, Seller Listed,
+     Seller Pending) and a **lead activity trigger** (Recent Online Activity). The extension has
+     never sent these two kinds to Lofty before. Open each plan and check the trigger reads the way
+     the list says. If Lofty refused one, the plan is there with no trigger and the list says so.
+   - **Stage triggers** (Post Closing, Sphere Nurture, Renter to Future Buyer) and **tag triggers**:
+     set when their Lofty has that stage or tag. If a stage name doesn't exist, the plan has no
+     trigger and the note says to pick their matching stage.
+   - **No trigger, on purpose:** the new-lead drips (attach each to its lead source, Phase 6),
+     Birthday and Home Anniversary (use Lofty's date-based option), and a few utility plans. Each
+     note says what started it in Follow Up Boss.
+   - Conditions FUB had that weren't copied (for example "not a past client").
 7. Known limits: the two **Post Closing** plans are very large and failed to upload in January
-   2026; **Birthday** and **Home Anniversary** are skipped. Build those by hand (Phase 5).
-   "Stop when the lead replies" carries over. Plain tasks arrive as Lofty's "text" task type; the
-   task name carries the instruction.
+   2026; build those by hand if they fail (Phase 5). "Stop when the lead replies" carries over.
+   Plain tasks arrive as Lofty's "text" task type; the task name carries the instruction.
 8. Each "pause another plan", "pause other plans" or "change stage" step arrives as a task with the
    instruction. Ask the agent whether to replace it with a Lofty step that does it.
-9. The first texts (14 new-lead drips) are **not** uploaded. Their wording is in
-   `data/action-plans.json` (`initialTextMessage`); see the table in Phase 5.
+9. **First texts.** Off by default. The checkbox "Add each new-lead drip's first text" puts the
+   text in as step 1 of the 14 drips that have one. It then texts every lead the plan starts for,
+   so only tick it on the agent's yes, with text registration done, for leads who agreed to texts.
+   Lofty waits in whole days: FUB's 1 to 60 minute delays become "right away".
 
 Then go on to Phase 6. Use Phase 5 for anything the extension couldn't do.
 

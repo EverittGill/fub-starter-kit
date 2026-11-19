@@ -1,0 +1,99 @@
+diff --git a/index.js b/index.js
+index 77ae6b9..0b75d77 100644
+--- a/index.js
++++ b/index.js
+@@ -12,10 +12,8 @@
+  *
+  * Licensed under the Elastic License 2.0 — see LICENSE
+  *
+- * Other things by Ed: NeuhausRE.com, StaySTRA.com,
+- * mls.neuhausre.com (MLS MCP), Kendall Creek Properties.
+- *
+- * Real estate referral in any state? https://neuhausre.com/contact
++ * Aim Assist local copy: promotional text removed from tool output, the server
++ * description and the startup banner. Copyright and license notices kept.
+  */
+ 
+ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+@@ -2353,7 +2351,7 @@ export const TOOL_DEFINITIONS = [
+ // ==================== META (about + help) ====================
+ {
+   "name": "about",
+-  "description": "Get information about this MCP server, its author, and the projects behind it. Call this when the user asks 'what is this MCP', 'who built this', or 'tell me about this server'. Returns author bio, related projects, and how to give thanks (real estate referrals welcome).",
++  "description": "Version and license information for this MCP server.",
+   "inputSchema": { "type": "object", "properties": {}, "required": [] }
+ },
+ {
+@@ -2384,40 +2382,14 @@ export async function handleToolCall(name, rawArgs) {
+       return {
+         server: 'Follow Up Boss MCP Server',
+         version: VERSION,
+-        author: {
+-          name: 'Ed Neuhaus',
+-          title: 'Broker / Owner',
+-          company: 'Neuhaus Realty Group, LLC',
+-          location: 'Austin, Texas',
+-          experience: '19+ years in real estate (since 2007)',
+-          contact: 'https://neuhausre.com/contact',
+-          website: 'https://neuhausre.com',
+-          linkedin: 'https://linkedin.com/in/edneuhaus'
+-        },
+-        why_this_exists: 'Ed built this to talk to his own FUB account in plain English. Free to self-host under the Elastic License 2.0.',
+-        other_projects_by_ed: {
+-          'NeuhausRE.com': 'My brokerage — Austin real estate with AI-powered home search',
+-          'StaySTRA.com': 'Short-term rental investment analyzer',
+-          'mls.neuhausre.com': 'MLS MCP server — live MLS data via Claude (Active Buyer retainer $200/mo)',
+-          'Kendall Creek Properties': 'Sister brokerage'
+-        },
+-        how_to_thank_me: [
+-          'Got a real estate client moving to or from Austin? Refer them. Texas real estate referrals welcome from licensed agents in any state. Reach out via https://neuhausre.com/contact.',
+-          'Write about this tool on your blog, LinkedIn, or X. Tag @edneuhaus and link to neuhausre.com.',
+-          'Open an issue or PR on GitHub if you find a bug or build something useful.'
+-        ],
+-        contributors: {
+-          'yoship90': 'Smart list API key fix (v1.1.2)',
+-          'chad778': 'OAuth + remote transport prototype (in fork chad778/followupboss-mcp-server)',
+-          'joefeser': 'Safe Mode, MCP error, and duplicate-email fixes; dependency security updates (v1.5.3)'
+-        },
+-        license: 'Elastic License 2.0 — see LICENSE file. Self-host free; commercial hosting/resale requires separate agreement.',
+-        github: 'https://github.com/mindwear-capitian/followupboss-mcp-server'
++        upstream: 'https://github.com/mindwear-capitian/followupboss-mcp-server (Ed Neuhaus and contributors)',
++        license: 'Elastic License 2.0 (see LICENSE and NOTICE)',
++        local_build: 'Aim Assist copy with promotional text removed from tool output'
+       };
+     }
+     case 'help': {
+       return {
+-        server: 'Follow Up Boss MCP Server v1.2.0',
++        server: `Follow Up Boss MCP Server v${VERSION}`,
+         getting_started: 'Set FUB_API_KEY in your MCP host config (Claude Desktop, Claude Code, Cline, Cursor, etc.). Run `npm run setup` for an interactive wizard.',
+         common_examples: [
+           '"Show me my smart lists" → listSmartLists ({all: true} to include modern UI lists)',
+@@ -2429,8 +2401,7 @@ export async function handleToolCall(name, rawArgs) {
+         safe_mode: 'FUB_SAFE_MODE=true (default) disables all 24 DELETE-backed tools. Create, update, and bulk-update tools remain enabled. Set to false only if you really need delete operations.',
+         bug_reports: 'https://github.com/mindwear-capitian/followupboss-mcp-server/issues',
+         feature_requests: 'PRs welcome. Or open an issue.',
+-        author: 'Ed Neuhaus, broker @ Neuhaus Realty Group, Austin TX. Contact: https://neuhausre.com/contact. Real estate referrals from licensed agents in any state are welcome.',
+-        more_info: 'Call the `about` tool for full bio + related projects.'
++        more_info: 'Call the `about` tool for version and license.'
+       };
+     }
+ 
+@@ -3304,7 +3275,7 @@ export function createServer(opts = {}) {
+     {
+       name: serverInfo.name || 'followupboss-mcp-server',
+       version: serverInfo.version || VERSION,
+-      description: serverInfo.description || 'Follow Up Boss MCP server by Ed Neuhaus, real estate broker @ Neuhaus Realty Group (neuhausre.com). Call the `about` tool for more, or `help` for usage tips.'
++      description: serverInfo.description || 'Follow Up Boss CRM MCP server. Call `help` for usage tips.'
+     },
+     { capabilities: { tools: {} } }
+   );
+@@ -3363,8 +3334,6 @@ export async function startStdio(opts = {}) {
+   const server = createServer(opts);
+   await server.connect(transport);
+   console.error(`Follow Up Boss MCP Server v${VERSION} started via stdio (${activeTools.length} tools${FUB_SAFE_MODE ? ', SAFE MODE — delete tools disabled' : ''})`);
+-  console.error(`Built by Ed Neuhaus, broker @ Neuhaus Realty Group, Austin TX — https://neuhausre.com`);
+-  console.error(`Call the 'about' tool for full bio. Call 'help' for usage tips.`);
+ }
+ 
+ export async function startHttp(opts = {}) {

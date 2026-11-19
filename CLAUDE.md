@@ -1,5 +1,9 @@
 # CLAUDE.md — FUB Starter Kit
 
+**Read `START-HERE.md` first and follow it phase by phase.** It covers getting the files, the FUB
+connector (with its promotional text removed), the second brain, account setup and the rebuild.
+The notes below are a short summary.
+
 You are helping a real estate agent set up their own Follow Up Boss (FUB) account with the KTS
 system in this repo, and install their Claude Code second brain. They are usually not a
 developer. Explain each step in plain sentences, do one step at a time, and confirm before
@@ -9,9 +13,9 @@ anything that changes their FUB account.
 
 Work through `docs/FRIEND-SETUP.md` alongside the steps below, and tell them which boxes are still open.
 
-1. **Config.** If `config.json` is missing, copy `config.example.json` to it and ask them for each
-   value. For the API key, tell them where to create it (FUB → Admin → API → Create API Key) and have
-   them paste it into the file themselves. Don't echo the key back in chat.
+1. **Config.** The API key lives in `~/.fub/followupboss.env` (START-HERE.md, Phase 2), which the agent
+   fills in themselves. Copy `config.example.json` to `config.json` for their website, links and
+   brokerage. Don't echo the key back in chat.
 2. **Dry run.** Run `node tools/import-to-fub.mjs --dry-run` and show them the account name it
    connected to. Make sure it's THEIR account before going on.
 3. **Import.** On their yes, run `node tools/import-to-fub.mjs`. It skips anything that already

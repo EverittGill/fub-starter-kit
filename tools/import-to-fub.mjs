@@ -8,10 +8,18 @@
 // It writes state/template-map.json (old template key -> your new template id), which the
 // action-plan build step uses to pick the right email for each step.
 import fs from 'node:fs';
+import os from 'node:os';
 
 const DRY = process.argv.includes('--dry-run');
 const cfg = JSON.parse(fs.readFileSync('config.json', 'utf8'));
-if (!cfg.fubApiKey || cfg.fubApiKey.startsWith('PASTE')) throw new Error('Put your FUB API key in config.json');
+// The key can live in config.json, or (preferred) in the same private file the FUB connector uses:
+// ~/.fub/followupboss.env with a line FUB_API_KEY=...
+if (!cfg.fubApiKey || cfg.fubApiKey.startsWith('PASTE')) {
+  const envFile = `${os.homedir()}/.fub/followupboss.env`;
+  const line = fs.existsSync(envFile) && fs.readFileSync(envFile, 'utf8').split('\n').find(l => l.startsWith('FUB_API_KEY='));
+  cfg.fubApiKey = line ? line.slice('FUB_API_KEY='.length).trim() : '';
+}
+if (!cfg.fubApiKey) throw new Error('No FUB API key: put it in ~/.fub/followupboss.env (FUB_API_KEY=...) or config.json');
 
 const auth = 'Basic ' + Buffer.from(cfg.fubApiKey + ':').toString('base64');
 async function fub(method, path, body) {

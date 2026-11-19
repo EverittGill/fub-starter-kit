@@ -1,5 +1,5 @@
 {
-  "fubApiKey": "PASTE your key from FUB: Admin > API > Create API Key",
+  "fubApiKey": "PASTE only if you do not use ~/.fub/followupboss.env",
   "website": "https://www.yourwebsite.com",
   "aboutMeUrl": "https://www.yourwebsite.com/about",
   "googleReviewsUrl": "https://g.page/r/your-google-business-review-link",

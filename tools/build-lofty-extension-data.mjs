@@ -81,15 +81,42 @@ const worker = name => automations.find(a => a.name === name);
 const KEEP_RUNNING = ['Happy Birthday', 'Happy Birthday - Relationship', 'Home Anniversary', 'Home Anniversary - Agnostic'];
 const task = (s, name) => ({ action: 'createTask', position: s.position, runAfterDays: s.runAfterDays, taskType: 'Follow Up', taskName: name });
 
+// In Lofty a task step HOLDS the plan until someone marks the task complete (seen live, Nov 2026).
+// In Follow Up Boss it doesn't. So a reminder step ("pause other plans", "pause plan X", "change
+// stage") that has steps after it is taken out of the flow and listed in finishNotes instead.
+// Reminder steps at the very end stay as tasks: nothing waits behind them.
+const REMINDERS = new Set(['stopPlan', 'stopOtherPlans', 'changeStage']);
+const reminderText = s => s.action === 'stopPlan' ? `pause the Smart Plan "${planName(s.stopPlanKey)}" for the lead`
+  : s.action === 'stopOtherPlans' ? `pause the lead's other KTS Smart Plans (FUB left ${KEEP_RUNNING.join(', ')} running)`
+  : `move the lead to the stage "${s.stage}"`;
+function splitReminders(steps) {
+  const sorted = steps.slice().sort((a, b) => a.position - b.position);
+  let lastReal = -1;
+  sorted.forEach((s, i) => { if (!REMINDERS.has(s.action) && s.action !== 'addNote') lastReal = i; });
+  const kept = [], finishNotes = [];
+  let carry = 0;
+  sorted.forEach((s, i) => {
+    if (REMINDERS.has(s.action) && i < lastReal) {
+      carry += s.runAfterDays || 0;
+      finishNotes.push(`In FUB this drip's step ${i + 1} was: ${reminderText(s)}. Left out, because a task step holds a Lofty plan until it is ticked off. Do it by hand when the plan starts, or add Lofty's own step for it in the plan editor.`);
+    } else {
+      kept.push(carry ? { ...s, runAfterDays: (s.runAfterDays || 0) + carry } : s);
+      carry = 0;
+    }
+  });
+  return { kept, finishNotes };
+}
+
 const usedTemplates = new Set();
-const actionPlans = plans.map(p => ({
+const actionPlans = plans.map(p => { const { kept, finishNotes } = splitReminders(p.steps); return ({
   id: p.key,
   name: p.name,
-  stepCount: p.steps.length,
+  stepCount: kept.length,
+  finishNotes,
   trigger: triggerFor(p.name),
   pauseOnReply: !!(p.stopOnContacted || worker(p.name)?.pauseWhenLeadResponds),
   firstText: p.initialTextMessageEnabled ? { body: swap(p.initialTextMessage), delayMinutes: p.delaySmsMinutes } : undefined,
-  steps: p.steps.map(s => {
+  steps: kept.map(s => {
     switch (s.action) {
       case 'sendEmail': usedTemplates.add(s.emailTemplateKey);
         return { action: 'sendEmail', position: s.position, runAfterDays: s.runAfterDays, emailTemplateId: s.emailTemplateKey };
@@ -109,7 +136,7 @@ const actionPlans = plans.map(p => ({
         return task(s, `KTS step "${s.action}" has no Lofty match: check the plan sheet`);
     }
   }),
-}));
+}); });
 
 const tplOut = {};
 for (const key of usedTemplates) {

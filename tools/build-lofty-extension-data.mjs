@@ -10,14 +10,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const extDir = process.argv[2];
+// --placeholders: leave {{WEBSITE}}, {{BROKERAGE}} etc. in the emails and need no config.json; the
+// extension then asks the agent for those details itself. Use this to hand the extension to someone.
+const KEEP = process.argv.includes('--placeholders');
+const extDir = process.argv.filter(a => a !== '--placeholders')[2];
 if (!extDir || !fs.existsSync(path.join(extDir, 'manifest.json'))) {
   console.error('Usage: node tools/build-lofty-extension-data.mjs <path to the extension folder (the one with manifest.json)>');
   process.exit(1);
 }
-if (!fs.existsSync('config.json')) { console.error('Make config.json first: cp config.example.json config.json, then fill it in.'); process.exit(1); }
+if (!KEEP && !fs.existsSync('config.json')) { console.error('Make config.json first: cp config.example.json config.json, then fill it in.'); process.exit(1); }
 
-const cfg = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+const cfg = KEEP ? { website: '{{WEBSITE}}', aboutMeUrl: '{{ABOUT_ME_URL}}', googleReviewsUrl: '{{GOOGLE_REVIEWS_URL}}', brokerage: '{{BROKERAGE}}', sellersGuideUrl: '{{SELLERS_GUIDE_URL}}' } : JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const vmap = JSON.parse(fs.readFileSync('lofty/variable-map.json', 'utf8'));
 const plans = JSON.parse(fs.readFileSync('data/action-plans.json', 'utf8'));
 const templates = JSON.parse(fs.readFileSync('data/email-templates.json', 'utf8'));
@@ -149,7 +152,7 @@ if (missing.size) {
   process.exit(1);
 }
 const leftovers = Object.values(tplOut).filter(t => /\{\{[A-Z_]+\}\}/.test(t.subject + t.body)).length;
-if (leftovers) { console.error(`${leftovers} emails still contain a {{PLACEHOLDER}}: check config.json`); process.exit(1); }
+if (leftovers && !KEEP) { console.error(`${leftovers} emails still contain a {{PLACEHOLDER}}: check config.json`); process.exit(1); }
 
 const meta = { source: 'fub-starter-kit', builtAt: new Date().toISOString(), website: cfg.website, brokerage: cfg.brokerage };
 fs.mkdirSync(path.join(extDir, 'data'), { recursive: true });

@@ -118,6 +118,11 @@ const actionPlans = plans.map(p => { const { kept, finishNotes } = splitReminder
   finishNotes,
   trigger: triggerFor(p.name),
   pauseOnReply: !!(p.stopOnContacted || worker(p.name)?.pauseWhenLeadResponds),
+  // FUB stopped a drip when the lead moved on (the next drip began with "pause other plans" or
+  // "pause plan X"). Those steps are left out for Lofty, so the plan pauses itself when the lead's
+  // stage changes instead. Not for the Nurture drips (their stages are Hot/Warm/Cold and they keep
+  // running across those) or the yearly Birthday / Home Anniversary drips.
+  pauseOnStageChange: !STAGE_TAG[p.name]?.keepOnStageChange && !KEEP_RUNNING.some(k => p.name === `*KTS AP ${k}`),
   firstText: p.initialTextMessageEnabled ? { body: swap(p.initialTextMessage), delayMinutes: p.delaySmsMinutes } : undefined,
   steps: kept.map(s => {
     switch (s.action) {
